@@ -5,8 +5,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="blexxon-build" content="bateria-resuelta-fix-20260823-212403">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>BLEXXON XELA · SOCIO INTERNO · JAVIER RAMIREZ</title>
-<link rel="stylesheet" href="app.css?v=bateria-resuelta-20260823-210807">
+<link rel="stylesheet" href="app.css?v=bateria-resuelta-fix-20260823-212403">
 </head>
 <body>
 <section class="login" id="loginView">
@@ -71,6 +75,15 @@
   </header>
 
   <main>
+    <section class="battery-resolved-alert" id="batteryResolvedAlert" role="alert" hidden>
+      <div class="battery-resolved-icon" aria-hidden="true">✓</div>
+      <div class="battery-resolved-copy">
+        <span>AVISO URGENTE · PROBLEMA SOLUCIONADO · ACTUALIZADO 21:24</span>
+        <strong>El Fundador resolvió todo vía remota con indicaciones del fabricante</strong>
+        <small>Se encontró humedad por la variación de temperatura causada por el clima. Baterías 1 y 2 verificadas y normalizadas; el banco central 4 se activó preventivamente y ya quedó nuevamente en reserva.</small>
+      </div>
+      <a class="battery-resolved-whatsapp" href="#" target="_blank" rel="noopener noreferrer">Confirmar recibido</a>
+    </section>
     <section class="hero">
       <div class="hero-top">
         <div>
@@ -166,6 +179,27 @@
   </main>
   <div class="footer">BLEXXON XELA · SOCIO INTERNO · JAVIER RAMIREZ · acceso autorizado a M01, M02 y baterías 1–4</div>
 </div>
-<script src="app.js?v=bateria-resuelta-20260823-210807"></script>
+<script>
+(()=>{
+  const BUILD='bateria-resuelta-fix-20260823-212403';
+  const START=Date.parse('2026-08-23T18:23:46-06:00');
+  const END=Date.parse('2026-08-24T00:00:00-06:00');
+  window.BLEXXON_BUILD=BUILD;
+  const syncUrgentBanner=()=>{
+    const banner=document.getElementById('batteryResolvedAlert');
+    if(banner)banner.hidden=!(Date.now()>=START&&Date.now()<END);
+  };
+  syncUrgentBanner();
+  setInterval(syncUrgentBanner,1000);
+  setInterval(async()=>{
+    try{
+      const html=await fetch('/?blexxon_version_check='+Date.now(),{cache:'no-store'}).then(r=>r.text());
+      const match=html.match(/<meta name="blexxon-build" content="([^"]+)"/i);
+      if(match&&match[1]!==BUILD)location.reload();
+    }catch(_){ }
+  },30000);
+})();
+</script>
+<script src="app.js?v=bateria-resuelta-fix-20260823-212403"></script>
 </body>
 </html>
